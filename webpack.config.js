@@ -6,7 +6,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   mode: 'production',
-  entry: __dirname +  '/src/js/script.js',
+  entry: __dirname + '/src/js/script.js',
   output: {
     filename: 'bundle.js',
     path: __dirname + '/dist/js'
@@ -18,7 +18,7 @@ module.exports = {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
         use: {
-          loader: 'babel-loader?optional[]=runtime',
+          loader: 'babel-loader',
           options: {
             presets: [
               ["@babel/env", {
@@ -29,9 +29,9 @@ module.exports = {
                   safari: "11.1",
                   ie: "11"
                 },
-                useBuiltIns: "usage"
               }]
-            ]
+            ],
+            plugins: ["es6-promise"]
           }
         }
       }
