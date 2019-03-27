@@ -1,19 +1,18 @@
 export function calc(){
     let persons = document.querySelectorAll('.counter-block-input')[0],
         restDays = document.querySelectorAll('.counter-block-input')[1],
-        allInputs = document.querySelector('.counter-block-input'),
         place = document.getElementById('select'),
         totalValue = document.querySelector('#total'),
         personSum = 0,
         daysSum = 0,
         total = 0;
 
-        totalValue.textContent = 0;
+        totalValue.textContent = (+daysSum + +personSum) * 4000 * place.options[place.selectedIndex].value;
 
         restDays.addEventListener('blur', function(event){
             check(this);
             daysSum = this.value;
-            total = (+daysSum + +personSum) * 4000;
+            total = (+daysSum + +personSum) * 4000 * place.options[place.selectedIndex].value;
 
             if (+this.value == 0 || +persons.value == 0) {
                 totalValue.textContent = 0;
@@ -25,7 +24,7 @@ export function calc(){
         persons.addEventListener('blur', function(){
             check(this);
             personSum = this.value;
-            total = (+daysSum + +personSum) * 4000;
+            total = (+daysSum + +personSum) * 4000 * place.options[place.selectedIndex].value;
 
             if (+restDays.value == 0 || +this.value == 0){
                 totalValue.textContent = 0;

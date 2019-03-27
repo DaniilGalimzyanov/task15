@@ -72,8 +72,7 @@ export function popupWindow() {
         let timerAnim = setInterval(frame, 5);
         function frame() {
             if (length < 300) {
-                length++;
-                console.log(length);
+                length += 1.5;
                 popup.style.top = `${length}px`;
             } else {
                 clearInterval(timerAnim);

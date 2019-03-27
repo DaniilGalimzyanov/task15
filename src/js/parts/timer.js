@@ -10,9 +10,9 @@ export function timer(endtime, hoursBlockName, minutesBlockName, secondsBlockNam
         if (dif <= 0) {
             clearInterval(timerID);
             return {
-                seconds: 0,
-                minutes: 0,
-                hours: 0
+                seconds: '00',
+                minutes: '00',
+                hours: '00'
             }
         } else {
             return {

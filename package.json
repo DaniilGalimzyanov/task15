@@ -19,8 +19,13 @@
     "core-js": "^2.6.5",
     "es6-promise": "^4.2.6",
     "formdata-polyfill": "^3.0.17",
+    "nodelist-foreach-polyfill": "^1.2.0",
     "uglifyjs-webpack-plugin": "^2.1.2",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"
+  },
+  "dependencies": {
+    "event-source-polyfill": "^1.0.5",
+    "events-polyfill": "^2.1.0"
   }
 }

@@ -7,9 +7,21 @@ export function formInit(formSelector) {
 
     let form = document.querySelector(formSelector),
         input = form.getElementsByTagName('input'),
+        validInput = input.phone,
+        validInputValue = '',
         statusMessage = document.createElement('div');
 
     statusMessage.classList.add('status');
+
+    validInput.addEventListener('keyup', function(event){       
+        if (/[()+]/.test(event.key) || /[0-9]/.test(event.key)){
+            validInputValue = this.value;
+        } else if(/[\D]/.test(event.key)){
+            this.value = validInputValue;
+        } 
+        validInputValue = this.value;
+        console.log(event);
+    });
 
     form.addEventListener('submit', function(event){
         event.preventDefault();
@@ -26,7 +38,7 @@ export function formInit(formSelector) {
             input[i].value = '';
         }
     }
-
+    
     function sendData() {
         return new Promise(function(resolve, reject){
             let request = new XMLHttpRequest();
@@ -37,11 +49,10 @@ export function formInit(formSelector) {
                 obj = {};
 
             formData.forEach(function(value, key) {
-                console.log(value, key);
                 obj[key] = value;
             });
-            
-            if (/[A-za-z]/.test(obj.phone.replace('(', '').replace(')', '')) || obj.phone.indexOf('+') != 0) {
+
+            if (obj.phone.indexOf('+') != 0) {
                 reject('Вводить можно только цифры, начиная с \'+\'');
             }
 

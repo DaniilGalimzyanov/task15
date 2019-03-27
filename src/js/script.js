@@ -7,25 +7,16 @@ import {popupWindow as popupWindow} from './parts/popup';
 import {formInit as formInit}       from './parts/formInit';
 import {anchorLink as anchorLink}   from './parts/anchorLink';
 import {calc as calc}               from './parts/calc';
-
+import 'nodelist-foreach-polyfill';
+import 'events-polyfill';
 
 window.addEventListener('DOMContentLoaded', function() {
-    anchorLink();
-    tabs()
-    timer('2019-04-15', '.hours', '.minutes', '.seconds');
-    popupWindow();  
     formInit('.main-form');
     formInit('#form');
+    anchorLink();
+    tabs()
+    timer('2019-01-22', '.hours', '.minutes', '.seconds');
+    popupWindow();  
     slider();
     calc();  
 });
-
-if ('NodeList' in window && !NodeList.prototype.forEach) {
-    console.info('polyfill for IE11');
-    NodeList.prototype.forEach = function (callback, thisArg) {
-      thisArg = thisArg || window;
-      for (var i = 0; i < this.length; i++) {
-        callback.call(thisArg, this[i], i, this);
-      }
-    };
-  }
