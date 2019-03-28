@@ -16,11 +16,12 @@ export function formInit(formSelector) {
     validInput.addEventListener('keyup', function(event){       
         if (/[()+]/.test(event.key) || /[0-9]/.test(event.key)){
             validInputValue = this.value;
-        } else if(/[\D]/.test(event.key)){
+        } else if(/[\D]/.test(event.key) && (event.key.toLowerCase() != 'backspace' && event.key.toLowerCase() != 'delete' && event.key != 'Del')){
             this.value = validInputValue;
-        } 
+        } else {
+            validInputValue = this.value;
+        }
         validInputValue = this.value;
-        console.log(event);
     });
 
     form.addEventListener('submit', function(event){
@@ -48,6 +49,10 @@ export function formInit(formSelector) {
             let formData = new FormData(form),
                 obj = {};
 
+            // console.log(formData.phone);
+            // for(let key of formData) {
+            //     obj[key] = formData[key];
+            // }
             formData.forEach(function(value, key) {
                 obj[key] = value;
             });
